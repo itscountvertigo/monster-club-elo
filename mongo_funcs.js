@@ -7,7 +7,7 @@ module.exports.getRating = async playerID => {
           console.log('getRating connects to mongo!')
 
           const result = await playerSchema.findOne({playerID})
-          console.log(`Result: ${result}`)
+          console.log(`Result: ${result.rating}`)
 
           let rating = 1000
           let gamesPlayed = 0
@@ -40,7 +40,7 @@ module.exports.getGP = async playerID => {
           console.log('getGP connects to mongo!')
 
           const result = await playerSchema.findOne({playerID})
-          console.log(`Result: ${result}`)
+          console.log(`Result: ${result.gamesPlayed}`)
 
           let rating = 1000
           let gamesPlayed = 0
@@ -92,8 +92,6 @@ module.exports.setRating = async (playerID, newRating) => {
                 versionKey: false
             })
 
-          console.log(`Result: ${result}`)
-
         } finally {
           mongoose.connection.close()
         }
@@ -124,8 +122,6 @@ module.exports.setGP = async (playerID, newGP) => {
               new: true,
               versionKey: false
           })
-
-        console.log(`Result: ${result}`)
 
       } finally {
         mongoose.connection.close()

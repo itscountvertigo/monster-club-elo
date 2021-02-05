@@ -102,7 +102,7 @@ module.exports = {
           }
         })
         .catch(collected => {
-            message.channel.send(`Command canceled, time ran out. ${author}, try again!`);
+          message.channel.send(`Command canceled, time ran out. ${author}, try again! If it hasn't been 1 minute, an error might've occured. Ping @itscountvertigo, please. Thanks!`);
         });
     })
     }

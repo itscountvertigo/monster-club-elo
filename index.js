@@ -39,13 +39,14 @@ client.on('message', message => {
     else if (command === 'setrating') {
         client.commands.get('setrating').execute(message, args, message.author);
     }
-    else if (command === 'setgamesplayed') {
+    else if (command === 'setgamesplayed' || command === 'setgp') {
         client.commands.get('setgamesplayed').execute(message, args, message.author);
     }
-    else if (command === 'setgp') {
-        client.commands.get('setgamesplayed').execute(message, args, message.author);
+    else if (command === 'help' || command === 'commands' || command === 'about') {
+        client.commands.get('help').execute(message, args, message.author);
     }
 })
 
-
 client.login(process.env.ELO_DC_TOKEN)
+
+//client.login('ODA3Mzg1NDg4NTQwODI3NjY5.YB3OVA.5o1Q6G4KVUgxBqs_0oIOTKiTOs0')
