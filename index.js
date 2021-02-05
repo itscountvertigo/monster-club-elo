@@ -48,5 +48,3 @@ client.on('message', message => {
 })
 
 client.login(process.env.ELO_DC_TOKEN)
-
-//client.login('ODA3Mzg1NDg4NTQwODI3NjY5.YB3OVA.5o1Q6G4KVUgxBqs_0oIOTKiTOs0')
