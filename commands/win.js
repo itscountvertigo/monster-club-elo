@@ -56,8 +56,8 @@ module.exports = {
             authorWinProb = 1 / (1 + 10 ** ((opponentRating - authorRating) / 400))
             opponentWinProb = 1 / (1 + 10 ** ((authorRating - opponentRating)) / 400)
 
-            authorNewRating = Math.round(authorRating + authorKval * (0 - authorWinProb))
-            opponentNewRating = Math.round(opponentRating + opponentKval * (1 - opponentWinProb))
+            authorNewRating = Math.round(authorRating + authorKval * (1 - authorWinProb))
+            opponentNewRating = Math.round(opponentRating + opponentKval * (0 - opponentWinProb))
 
             authorDiff = (authorNewRating - authorRating)
             if (authorDiff > 0) {
@@ -76,7 +76,7 @@ module.exports = {
             let confirmEmbed = new Discord.MessageEmbed()
             .setColor(0xff007b)
             .setTitle(`${author.username} vs ${opponent.username}`)
-            .setDescription(`${opponent.username} won!`)
+            .setDescription(`${author.username} won!`)
             .addFields(
               {name: `${author.username}'s elo:`, value: `${authorNewRating} (${authorDiff}), previously ${authorRating}`, inline: true},
               {name: `${opponent.username}'s new elo:`, value: `${opponentNewRating} (${opponentDiff}), previously ${opponentRating}`, inline: true}
