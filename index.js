@@ -17,7 +17,10 @@ for(const file of commandFiles){
 
 const prefix = '!';
 
-console.log('Bot is running!')
+client.on("ready", () => {
+    console.log('Bot is running!')
+    client.user.setActivity("use !help", { type: "WATCHING"})
+})
 
 client.on('message', message => {
     if(!message.content.startsWith(prefix) || message.author.bot) {
