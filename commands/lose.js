@@ -54,11 +54,25 @@ module.exports = {
               opponentKval = 64
             } 
 
+            console.log(`author's k value is ${authorKval}`)
+            // console.log(`opponent's k value is ${authorKval}`)
+
+            console.log(`author played ${authorGP} games`)
+            // console.log(`opponent played ${opponentGP} games`)
+
             authorWinProb = 1 / (1 + 10 ** ((opponentRating - authorRating) / 400))
-            opponentWinProb = 1 / (1 + 10 ** ((authorRating - opponentRating)) / 400)
+            // console.log(`probability of author winning: ${authorWinProb}`)
+
+            opponentWinProb = 1 - authorWinProb
+
+            // opponentWinProb = 1 / (1 + 10 ** ((authorRating - opponentRating)) / 400) // this code gives weird output sometimes for no good re
+            console.log(`probability of opponent winning: ${opponentWinProb}`)
 
             authorNewRating = Math.round(authorRating + authorKval * (0 - authorWinProb))
+            // console.log(`new rating author: ${authorNewRating}`)
+
             opponentNewRating = Math.round(opponentRating + opponentKval * (1 - opponentWinProb))
+            // console.log(`new rating author: ${authorNewRating}`) 
 
             authorDiff = (authorNewRating - authorRating)
             if (authorDiff > 0) {
@@ -72,6 +86,12 @@ module.exports = {
 
             await mongo_funcs.setRating(author.id, authorNewRating)
             await mongo_funcs.setRating(opponent.id, opponentNewRating)
+
+            authorNewGP = authorGP + 1
+            opponentNewGP = opponentGP + 1
+
+            await mongo_funcs.setGP(author.id, authorNewGP)
+            await mongo_funcs.setGP(opponent.id, opponentNewGP)
             
             // create embed
             let confirmEmbed = new Discord.MessageEmbed()

@@ -54,7 +54,7 @@ module.exports = {
             } 
 
             authorWinProb = 1 / (1 + 10 ** ((opponentRating - authorRating) / 400))
-            opponentWinProb = 1 / (1 + 10 ** ((authorRating - opponentRating)) / 400)
+            opponentWinProb = 1 - authorWinProb
 
             authorNewRating = Math.round(authorRating + authorKval * (1 - authorWinProb))
             opponentNewRating = Math.round(opponentRating + opponentKval * (0 - opponentWinProb))
@@ -71,6 +71,12 @@ module.exports = {
 
             await mongo_funcs.setRating(author.id, authorNewRating)
             await mongo_funcs.setRating(opponent.id, opponentNewRating)
+
+            authorNewGP = authorGP + 1
+            opponentNewGP = opponentGP + 1
+
+            await mongo_funcs.setGP(author.id, authorNewGP)
+            await mongo_funcs.setGP(opponent.id, opponentNewGP)
             
             // create embed
             let confirmEmbed = new Discord.MessageEmbed()
