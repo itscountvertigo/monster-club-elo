@@ -5,28 +5,23 @@ module.exports.getRating = async playerID => {
     return await mongo().then(async mongoose => {
         try {
           console.log('getRating connects to mongo!')
+          
+          const result = await playerSchema.findOneAndUpdate({
+            playerID
+        }, {
+            'playerID': playerID,
+            $setOnInsert: {
+              'rating': 1000,
+              'gamesPlayed': 0
+            }
+        }, {
+            upsert: true, 
+            new: true,
+            versionKey: false
+        })
 
-          const result = await playerSchema.findOne({playerID})
           console.log(`Result: ${result.rating}`)
-
-          let rating = 1000
-          let gamesPlayed = 0
-
-          if (result) {
-              rating = result.rating
-              gamesPlayed = result.gamesPlayed
-          } else {
-              console.log('new player! adding to database')
-              await new playerSchema({
-                    playerID,
-                    rating,
-                    gamesPlayed
-                }, {
-                    versionKey: false
-                }
-              ).save()
-          }
-          return rating
+          return result.rating
 
         } finally {
           mongoose.connection.close()
