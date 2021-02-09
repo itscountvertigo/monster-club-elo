@@ -14,7 +14,7 @@ module.exports = {
             changeGP = args[1]
         }
 
-        if (!message.member.roles.cache.some(role => role.name === 'Elo Bot Manager')) {
+        if (!message.member.roles.cache.some(role => role.name === 'The Inner Circle')) {
             return message.channel.send("Sorry, you lack the permissions to manage the bot.")
         }
 
