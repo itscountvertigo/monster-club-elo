@@ -48,6 +48,9 @@ client.on('message', message => {
     else if (command === 'help' || command === 'commands' || command === 'about') {
         client.commands.get('help').execute(message, args, message.author);
     }
+    else if (command === 'turtles') {
+        client.commands.get('turtles').execute(message, client);
+    }
 })
 
 client.login(process.env.ELO_DC_TOKEN)
