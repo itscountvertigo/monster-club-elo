@@ -24,7 +24,6 @@ Sets your (or the person you @mentioned if you did), number of games played to s
 - Uses an ELO algorithm to calculate your new rating based on what your opponent's rating is
 
 ## TODO
-- [ ] add ranks you gain for life based on what rating you have achieved
-- [ ] add support for factions (so there is a faction leaderboard)
-- [ ] fix 0 change bug
-- [ ] add !leaderboard
+- add ranks you gain for life based on what rating you have achieved
+- add support for factions (so there is a faction leaderboard)
+- add !leaderboard
