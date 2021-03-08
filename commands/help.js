@@ -1,7 +1,7 @@
 module.exports = {
     name: 'help',
     description: 'show cool commands',
-    execute: async function (message, args, author) {
+    execute: async function (message) {
         const Discord = require('discord.js')
 
         const helpEmbed = new Discord.MessageEmbed()

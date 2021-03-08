@@ -46,10 +46,13 @@ client.on('message', message => {
         client.commands.get('setgamesplayed').execute(message, args, message.author);
     }
     else if (command === 'help' || command === 'commands' || command === 'about') {
-        client.commands.get('help').execute(message, args, message.author);
+        client.commands.get('help').execute(message);
     }
     else if (command === 'turtles') {
-        client.commands.get('turtles').execute(message, client);
+        client.commands.get('turtles').execute(message);
+    }
+    else if (command == 'leaderboard') {
+        client.commands.get('leaderboard').execute(message);
     }
 })
 

@@ -123,3 +123,25 @@ module.exports.setGP = async (playerID, newGP) => {
       }
     })
 }
+
+module.exports.leaderboard = async () => {
+  return await mongo().then(async mongoose => {
+    try {
+      console.log('leaderboard connects to mongo!')
+
+      const lb = await playerSchema.find().sort({'rating': -1}).limit(10)
+
+      let outputArray = []
+
+      for (i = 0; i < lb.length; i++) {
+        const { playerID, rating} = lb[i]
+        outputArray.push([playerID, rating])
+      }
+
+      return outputArray
+
+    } finally {
+      mongoose.connection.close()
+    }
+  })
+}

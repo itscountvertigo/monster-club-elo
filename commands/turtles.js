@@ -1,7 +1,7 @@
 module.exports = {
     name: 'turtles',
     description: 'i love turtles and so should you',
-    execute: async function (message, client) {
+    execute: async function (message) {
         const Discord = require('discord.js')
         const fs = require('fs')
         

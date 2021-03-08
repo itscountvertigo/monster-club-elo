@@ -46,10 +46,10 @@ module.exports = {
             authorKval = 32
             opponentKval = 32
 
-            if (authorGP <= 10) {
+            if (authorGP <= 8) {
               authorKval = 16
             }
-            if (opponentGP <= 10) {
+            if (opponentGP <= 8) {
               opponentKval = 16
             } 
 
