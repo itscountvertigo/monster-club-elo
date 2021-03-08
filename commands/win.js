@@ -47,10 +47,10 @@ module.exports = {
             opponentKval = 32
 
             if (authorGP <= 10) {
-              authorKval = 64
+              authorKval = 16
             }
             if (opponentGP <= 10) {
-              opponentKval = 64
+              opponentKval = 16
             } 
 
             authorWinProb = 1 / (1 + 10 ** ((opponentRating - authorRating) / 400))

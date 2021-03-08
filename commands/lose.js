@@ -48,25 +48,17 @@ module.exports = {
             opponentKval = 32
 
             if (authorGP <= 10) {
-              authorKval = 64
+              authorKval = 16
             }
             if (opponentGP <= 10) {
-              opponentKval = 64
-            } 
-
-            console.log(`author's k value is ${authorKval}`)
-            // console.log(`opponent's k value is ${authorKval}`)
-
-            console.log(`author played ${authorGP} games`)
-            // console.log(`opponent played ${opponentGP} games`)
+              opponentKval = 16
+            }
 
             authorWinProb = 1 / (1 + 10 ** ((opponentRating - authorRating) / 400))
             // console.log(`probability of author winning: ${authorWinProb}`)
 
             opponentWinProb = 1 - authorWinProb
-
-            // opponentWinProb = 1 / (1 + 10 ** ((authorRating - opponentRating)) / 400) // this code gives weird output sometimes for no good re
-            console.log(`probability of opponent winning: ${opponentWinProb}`)
+            // console.log(`probability of opponent winning: ${opponentWinProb}`)
 
             authorNewRating = Math.round(authorRating + authorKval * (0 - authorWinProb))
             // console.log(`new rating author: ${authorNewRating}`)
