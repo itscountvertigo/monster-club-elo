@@ -34,7 +34,7 @@ module.exports = {
             console.log(`${author.username} tried to battle the bot`)
             return message.channel.send("I can't battle! I'm a bot!")
         }
-        if (p1.id == p1.id) {
+        if (p1.id == p2.id) {
             console.log(`${author.username} tried to battle the same player twice`)
             return message.channel.send("You can't battle yourself!")   
         }
