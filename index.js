@@ -19,7 +19,7 @@ const prefix = '!';
 
 client.on("ready", () => {
     console.log('Bot is running!')
-    client.user.setActivity("use !/#/- help", { type: "WATCHING"})
+    client.user.setActivity("i too am demi >:)", { type: "WATCHING"})
 })
 
 client.on('message', message => {
@@ -53,6 +53,9 @@ client.on('message', message => {
     }
     else if (command == 'leaderboard') {
         client.commands.get('leaderboard').execute(message);
+    }
+    else if (command == 'simulate' || command == 'whatif') {
+        client.commands.get('simulate').execute(message, args, message.author, client);
     }
 })
 
