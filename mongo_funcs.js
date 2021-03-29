@@ -129,7 +129,7 @@ module.exports.leaderboard = async () => {
     try {
       console.log('leaderboard connects to mongo!')
 
-      const lb = await playerSchema.find().sort({'rating': -1}).limit(10)
+      const lb = await playerSchema.find({gamesPlayed: {$gt: 0}}).sort({'rating': -1}).limit(10)
 
       let outputArray = []
 
