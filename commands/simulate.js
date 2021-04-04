@@ -43,8 +43,6 @@ module.exports = {
         p1Rating = await mongo_funcs.getRating(p1.id)
         p2Rating = await mongo_funcs.getRating(p2.id)
 
-        console.log(p1.username)
-
         p1GP = await mongo_funcs.getGP(p1.id)
         p2GP = await mongo_funcs.getGP(p2.id)
 
@@ -61,12 +59,15 @@ module.exports = {
         p1WinProb = 1 / (1 + 10 ** ((p2Rating - p1Rating) / 400))
         p2WinProb = 1 - p1WinProb
 
+        // if p1 wins:
         p1NewRatingWin = Math.round(p1Rating + p1Kval * (1 - p1WinProb))
         p2NewRatingLoss = Math.round(p2Rating + p2Kval * (0 - p2WinProb))
 
+        // if p2 wins:
         p1NewRatingLoss = Math.round(p1Rating + p1Kval * (0 - p1WinProb))
-        p2NewRatingWin = Math.round(p1Rating + p1Kval * (1 - p1WinProb))
+        p2NewRatingWin = Math.round(p2Rating + p2Kval * (1 - p2WinProb))
 
+        // if p1 wins:
         p1DiffWin = (p1NewRatingWin - p1Rating)
         if (p1DiffWin > 0) {
           p1DiffWin = `+${p1DiffWin}`
@@ -76,13 +77,14 @@ module.exports = {
           p2DiffLoss = `+${p2DiffLoss}`
         }
         
+        // if p2 wins:
         p1DiffLoss = (p1NewRatingLoss - p1Rating)
         if (p1DiffLoss > 0) {
           p1DiffLoss = `+${p1DiffLoss}`
         }
         p2DiffWin = (p2NewRatingWin - p2Rating)
         if (p2DiffWin > 0) {
-          p2DiffWin = `+${p2DiffLoss}`
+          p2DiffWin = `+${p2DiffWin}`
         }
         
         // create embed
@@ -91,16 +93,15 @@ module.exports = {
         .setTitle(`${p1.username} vs ${p2.username}`)
         .setDescription(`Simulated match, no real changes made.`)
         .addFields(
-            // if p1 won
             {
                 name: `If ${p1.username} won:`, 
                 value: `${p1.username}: ${p1NewRatingWin} (${p1DiffWin}), previously ${p1Rating}\n
-                        ${p2.username}: ${p2NewRatingLoss} (${p2DiffLoss}), previously ${p2Rating}'`
+                        ${p2.username}: ${p2NewRatingLoss} (${p2DiffLoss}), previously ${p2Rating}`
             },
             {
                 name: `If ${p2.username} won:`, 
                 value: `${p1.username}: ${p1NewRatingLoss} (${p1DiffLoss}), previously ${p1Rating}\n
-                        ${p2.username}: ${p2NewRatingWin} (${p2DiffWin}), previously ${p2Rating}'`
+                        ${p2.username}: ${p2NewRatingWin} (${p2DiffWin}), previously ${p2Rating}`
             }
         )
         .setFooter(`If you think this is incorrect or feel like something is wrong, feel free to ping a mod!`)
