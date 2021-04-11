@@ -2,21 +2,19 @@
 ELO Rating bot for the Monster Club Discord servrer
 
 ## Commands
-- !win [@opponent] or !lose [@opponent]
+A few examples of what this bot can do:
+
+- !win [@opponent] [gamemode] or !lose [@opponent] [gamemode]
 
 The bot will ask your opponent for confirmation about the match and update your rating accordingly when the opponent answers 'yes'.
 
-- !rating [@target (optional)]
+- !rating [@target (optional)] [gamemode]
 
 Shows you your current rating, or the rating of the persion you @mention (if you do)
 
-- !setrating [@target (optional)] [new rating]
+- !leaderboard [gamemode]
 
-Sets your (or the person you @mentioned if you did), rating to specified new rating. Only works with "Elo Bot Manager" role
-
-- !setgp / !setgamesplayed
-
-Sets your (or the person you @mentioned if you did), number of games played to specified new number of games played. Only works with "Elo Bot Manager" role.
+Shows the leaderboard of a gamemode
 
 ## Features
 
@@ -26,4 +24,3 @@ Sets your (or the person you @mentioned if you did), number of games played to s
 ## TODO
 - add ranks you gain for life based on what rating you have achieved
 - add support for factions (so there is a faction leaderboard)
-- add !leaderboard
