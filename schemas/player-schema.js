@@ -5,14 +5,32 @@ const playerSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    rating: {
+    trialRating: {
         type: Number,
         required: true
     },
-    gamesPlayed: {
+    royaleRating: {
         type: Number,
         required: true
     },
+    mazeRating: {
+        type: Number,
+        required: true
+    },
+    trialGP: {
+        type: Number,
+        required: true
+    },
+    royaleGP: {
+        type: Number,
+        required: true
+    },
+    mazeGP: {
+        type: Number,
+        required: true
+    },
+    
+    
 })
 
 module.exports = mongoose.model('players', playerSchema)

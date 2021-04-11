@@ -1,30 +1,44 @@
 module.exports = {
     name: 'leaderboard',
-    execute: async function (message) {
+    execute: async function (message, args) {
         const Discord = require('discord.js');
         const mongo_funcs = require('../mongo_funcs')
 
-        lb = await mongo_funcs.leaderboard()
+        gameMode = args[0]
+
+        if (gameMode != 'mt' && gameMode != 'mr' && gameMode != 'mm') {
+            return message.channel.send("You have to specify a gamemode! You can use 'mt', 'mr' or 'mm'. If you can't figure it out, ping @itscountvertigo")
+        }
+
+        lb = await mongo_funcs.leaderboard(gameMode)
         console.log(lb)
+
+        lbText = ''
+        for (i = 0; i < lb.length; i++) {
+            lbText = lbText.concat(`${i + 1}. <@${lb[i][0]}>, rated ${lb[i][1]}\n`)
+        }
+
+        if (lbText == '') {
+            lbText = 'No one has played this gamemode.'
+        }
+
+        let gameModeText  
+        if (gameMode == 'mt') {
+          gameModeText = 'Monster Trial';
+        } else if (gameMode == 'mr') {
+          gameModeText = 'Monster Royale';
+        } else if (gameMode == 'mm') {
+          gameModeText = 'Monster Maze';
+        }
+
+        console.log(gameModeText)
 
         const leaderboardEmbed = new Discord.MessageEmbed()
         .setColor(0xff007b)
-        .addField(
-            'Leaderboard',
-            `1. <@${lb[0][0]}>, rated ${lb[0][1]}
-            2. <@${lb[1][0]}>, rated ${lb[1][1]}
-            3. <@${lb[2][0]}>, rated ${lb[2][1]}
-            4. <@${lb[3][0]}>, rated ${lb[3][1]}
-            5. <@${lb[4][0]}>, rated ${lb[4][1]}
-            6. <@${lb[5][0]}>, rated ${lb[5][1]}
-            7. <@${lb[6][0]}>, rated ${lb[6][1]}
-            8. <@${lb[7][0]}>, rated ${lb[7][1]}
-            9. <@${lb[8][0]}>, rated ${lb[8][1]}
-            10. <@${lb[9][0]}>, rated ${lb[9][1]}`
-        )
+        .addField(`${gameModeText} leaderboard`, lbText)
         .setFooter(`If you think this is incorrect or feel like something is wrong, feel free to ping a mod!`)
         .setTimestamp()
-        message.channel.send(leaderboardEmbed)
 
+        message.channel.send(leaderboardEmbed)
     }
 }

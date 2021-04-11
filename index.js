@@ -31,13 +31,13 @@ client.on('message', message => {
     const command = args.shift().toLowerCase();
 
     if (command === 'win') {
-        client.commands.get('win').execute(message, args, message.author);
+        client.commands.get('win').execute(message, args, message.author, client);
     }
     else if (command === 'lose') {
-        client.commands.get('lose').execute(message, args, message.author);
+        client.commands.get('lose').execute(message, args, message.author, client);
     }
     else if (command === 'rating') {
-        client.commands.get('rating').execute(message, args, message.author);
+        client.commands.get('rating').execute(message, args, message.author, client);
     }
     else if (command === 'setrating') {
         client.commands.get('setrating').execute(message, args, message.author);
@@ -52,11 +52,15 @@ client.on('message', message => {
         client.commands.get('turtles').execute(message);
     }
     else if (command == 'leaderboard') {
-        client.commands.get('leaderboard').execute(message);
+        client.commands.get('leaderboard').execute(message, args);
     }
     else if (command == 'simulate' || command == 'whatif') {
         client.commands.get('simulate').execute(message, args, message.author, client);
     }
+    // this command sets all monster royale and maze scores to 1000, which is why it is commented out
+    /*else if (command == 'init_new_ratings') {
+        client.commands.get('init_new_ratings').execute(message);
+    } */
 })
 
 client.login(process.env.ELO_DC_TOKEN)
