@@ -19,7 +19,7 @@ const prefix = '!';
 
 client.on("ready", () => {
     console.log('Bot is running!')
-    client.user.setActivity("i too am demi >:)", { type: "WATCHING"})
+    client.user.setActivity("use !/#/- help :)", { type: "WATCHING"})
 })
 
 client.on('message', message => {
