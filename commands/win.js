@@ -21,7 +21,7 @@ module.exports = {
 
       p1 = author
       p2 = getUserFromMention(args[0], client)
-      gameMode = args[1]
+      gameMode = args[1].toLowerCase()
 
       // content checks (checks wether or not the pinged user is valid)
       if (!message.mentions.users.size){
